@@ -21,11 +21,11 @@ const parseExerciseArguments = (args: string[]): ExercisCalc => {
     return {
       array: [Number(args[3]), Number(args[4]), Number(args[5]), Number(args[6]), Number(args[7]), Number(args[8]), Number(args[9]), Number(args[10]), Number(args[11])],
       target: Number(args[2])
-    }
+    };
   } else {
     throw new Error('Provided values were not numbers!');
   }
-}
+};
 
 const calculateExercises = (array: number[], target: number): Result => {
   let rating: number;
@@ -57,16 +57,16 @@ const calculateExercises = (array: number[], target: number): Result => {
     ratingDescription: ratingDescription,
     target: target,
     average: average
-  }
+  };
 
-  return result
-}
+  return result;
+};
 
 try {
   const { array, target } = parseExerciseArguments(process.argv);
   console.log(calculateExercises(array, target));
 } catch (error: unknown) {
-  let errorMessage = 'Something bad happened.'
+  let errorMessage = 'Something bad happened.';
   if (error instanceof Error) {
     errorMessage += ' Error: ' + error.message;
   }
