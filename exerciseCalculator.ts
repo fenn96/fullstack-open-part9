@@ -8,26 +8,7 @@ interface Result {
   average: number;
 }
 
-interface ExercisCalc {
-  array: number[];
-  target: number;
-}
-
-const parseExerciseArguments = (args: string[]): ExercisCalc => {
-  if (args.length < 12) throw new Error('Not enough arguments');
-  if (args.length > 12) throw new Error('Too many arguments');
-
-  if (!isNaN(Number(args[2])) && !isNaN(Number(args[3])) && !isNaN(Number(args[4])) && !isNaN(Number(args[5])) && !isNaN(Number(args[6])) && !isNaN(Number(args[7])) && !isNaN(Number(args[8])) && !isNaN(Number(args[9])) && !isNaN(Number(args[10])) && !isNaN(Number(args[11]))) {
-    return {
-      array: [Number(args[3]), Number(args[4]), Number(args[5]), Number(args[6]), Number(args[7]), Number(args[8]), Number(args[9]), Number(args[10]), Number(args[11])],
-      target: Number(args[2])
-    };
-  } else {
-    throw new Error('Provided values were not numbers!');
-  }
-};
-
-const calculateExercises = (array: number[], target: number): Result => {
+export const calculateExercises = (array: number[], target: number): Result => {
   let rating: number;
   let ratingDescription: string;
   const trainingDays: number = array.filter((day) => day > 0).length;
@@ -61,14 +42,3 @@ const calculateExercises = (array: number[], target: number): Result => {
 
   return result;
 };
-
-try {
-  const { array, target } = parseExerciseArguments(process.argv);
-  console.log(calculateExercises(array, target));
-} catch (error: unknown) {
-  let errorMessage = 'Something bad happened.';
-  if (error instanceof Error) {
-    errorMessage += ' Error: ' + error.message;
-  }
-  console.log(errorMessage);
-}

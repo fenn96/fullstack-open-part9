@@ -1,22 +1,3 @@
-interface BmiCalc {
-  height: number;
-  weight: number;
-}
-
-export const parseBmiArguments = (args: string[]): BmiCalc => {
-  if (args.length < 5) throw new Error('Not enough arguments');
-  if (args.length > 5) throw new Error('Too many arguments');
-
-  if (!isNaN(Number(args[2])) && !isNaN(Number(args[3]))) {
-    return {
-      weight: Number(args[2]),
-      height: Number(args[3])
-    };
-  } else {
-    throw new Error('Provided values were not numbers!');
-  }
-};
-
 export const calculateBmi = (height: number, weight: number): string => {
   const bmi = weight / height / height * 10000;
   switch(true) {
